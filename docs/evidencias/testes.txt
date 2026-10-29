@@ -1,0 +1,20 @@
+== AVL ==
+  [OK] inserção crescente/decrescente/aleatória
+  [OK] busca de existentes e inexistentes
+  [OK] inserção de valores repetidos
+  [OK] remoção (folha, um filho, dois filhos, raiz, tudo)
+  [OK] remoção de elementos inexistentes
+  [OK] árvore vazia e com um elemento
+  [OK] estresse aleatório vs. oráculo (invariantes a cada operação)
+  [OK] limite de altura com 100 000 chaves ordenadas
+== Rubro-Negra ==
+  [OK] inserção crescente/decrescente/aleatória
+  [OK] busca de existentes e inexistentes
+  [OK] inserção de valores repetidos
+  [OK] remoção (folha, um filho, dois filhos, raiz, tudo)
+  [OK] remoção de elementos inexistentes
+  [OK] árvore vazia e com um elemento
+  [OK] estresse aleatório vs. oráculo (invariantes a cada operação)
+  [OK] limite de altura com 100 000 chaves ordenadas
+
+7372 verificações, 0 falhas.

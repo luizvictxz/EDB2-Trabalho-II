@@ -1,0 +1,129 @@
+################ Operações em AVL ################
+
+--- Após inserir 50 30 70 20 40 60 80 10 25 35 (altura 4, rotações 0) ---
+            80 (fb=0)
+      70 (fb=0)
+            60 (fb=0)
+50 (fb=1)
+            40 (fb=1)
+                  35 (fb=0)
+      30 (fb=0)
+                  25 (fb=0)
+            20 (fb=0)
+                  10 (fb=0)
+
+inserir 40 (repetido)  -> rejeitado: já existe
+buscar 35              -> encontrado
+buscar 99              -> não encontrado
+remover 99             -> não encontrado
+remover 10 (folha)     -> removido
+remover 30 (2 filhos)  -> removido
+remover 50 (raiz)      -> removido
+
+--- Após as remoções (altura 4, rotações 0) ---
+            80 (fb=0)
+      70 (fb=-1)
+60 (fb=1)
+            40 (fb=0)
+      35 (fb=1)
+                  25 (fb=0)
+            20 (fb=-1)
+
+Em ordem: 20 25 35 40 60 70 80 
+Invariantes: OK
+
+################ Operações em Rubro-Negra ################
+
+--- Após inserir 50 30 70 20 40 60 80 10 25 35 (altura 4, rotações 0, recolorações 8) ---
+            80 (R)
+      70 (B)
+            60 (R)
+50 (B)
+            40 (B)
+                  35 (R)
+      30 (R)
+                  25 (R)
+            20 (B)
+                  10 (R)
+
+inserir 40 (repetido)  -> rejeitado: já existe
+buscar 35              -> encontrado
+buscar 99              -> não encontrado
+remover 99             -> não encontrado
+remover 10 (folha)     -> removido
+remover 30 (2 filhos)  -> removido
+remover 50 (raiz)      -> removido
+
+--- Após as remoções (altura 4, rotações 0, recolorações 9) ---
+            80 (R)
+      70 (B)
+60 (B)
+            40 (B)
+      35 (R)
+                  25 (R)
+            20 (B)
+
+Em ordem: 20 25 35 40 60 70 80 
+Invariantes: OK
+
+################ AVL: exemplos de rotação ################
+
+--- ANTES: 30, 20 (balanceada) (altura 2, rotações 0) ---
+30 (fb=1)
+      20 (fb=0)
+
+>> inserindo 10 -> raiz 30 com fb=+2 (caso Esq-Esq): rotação simples à direita
+
+--- DEPOIS: rotação simples à direita em 30 (altura 2, rotações 1) ---
+      30 (fb=0)
+20 (fb=0)
+      10 (fb=0)
+
+--- ANTES: 10, 30 (altura 2, rotações 0) ---
+      30 (fb=0)
+10 (fb=-1)
+
+>> inserindo 20 -> raiz 10 com fb=-2, filho direito com fb=+1 (caso Dir-Esq): rotação dupla
+
+--- DEPOIS: rotação dupla (direita em 30, esquerda em 10) (altura 2, rotações 2) ---
+      30 (fb=0)
+20 (fb=0)
+      10 (fb=0)
+
+################ Rubro-Negra: exemplos de ajuste ################
+
+--- ANTES: 10(B) com filhos 5(R) e 15(R) (altura 2, rotações 0, recolorações 1) ---
+      15 (R)
+10 (B)
+      5 (R)
+
+>> inserindo 1 -> pai (5) e tio (15) vermelhos: caso 1, só RECOLORAÇÃO
+
+--- DEPOIS: 5 e 15 pretos, 10 vermelho -> raiz repintada de preto (altura 3, rotações 0, recolorações 5) ---
+      15 (B)
+10 (B)
+      5 (B)
+            1 (R)
+
+--- ANTES: 10(B) -> 20(R) (altura 2, rotações 0, recolorações 1) ---
+      20 (R)
+10 (B)
+
+>> inserindo 30 -> pai vermelho, tio preto (NIL), alinhado: caso 3, ROTAÇÃO à esquerda + recoloração
+
+--- DEPOIS: 20(B) na raiz, 10(R) e 30(R) (altura 2, rotações 1, recolorações 3) ---
+      30 (R)
+20 (B)
+      10 (R)
+
+--- ANTES: 10(B) -> 30(R) (altura 2, rotações 0, recolorações 1) ---
+      30 (R)
+10 (B)
+
+>> inserindo 20 -> tio preto, nó "dobrado": caso 2, ROTAÇÃO DUPLA
+
+--- DEPOIS: 20(B) na raiz (altura 2, rotações 2, recolorações 3) ---
+      30 (R)
+20 (B)
+      10 (R)
+
